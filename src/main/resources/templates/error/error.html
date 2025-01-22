@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ошибка</title>
+</head>
+<body>
+<h1>Произошла ошибка</h1>
+<p th:text="${message}">Ошибка</p>
+<a th:href="@{/books}">Вернуться к списку книг</a>
+</body>
+</html>

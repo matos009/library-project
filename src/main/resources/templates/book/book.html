@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Книга</title>
+</head>
+<body>
+<p th:text="${book.name} + ', ' + ${book.author} + ', ' + ${book.year}">Название книги</p>
+<p th:if="${book.user == null}">
+    Эта книга свободна. Кому назначить её?
+</p>
+<p th:if="${book.user != null}">
+    Эта книга назначена <span th:text="${book.user.fio}">Имя пользователя</span>. Хотите переназначить?
+</p>
+<form th:action="@{/books/{id}/assign(id=${book.id})}" method="post">
+    <label for="user">Выберите человека</label>
+    <select id="user" name="userId" required>
+        <option th:each="user : ${people}" th:value="${user.id}" th:text="${user.fio}">
+            Имя пользователя
+        </option>
+    </select>
+    <button type="submit">Назначить книгу</button>
+</form>
+
+
+
+<a th:href="@{/books/{id}/edit(id=${book.getId()})}" class="btn">Редактировать</a>
+<a th:href="@{/books/{id}/delete(id=${book.id})}" onclick="return confirm('Вы уверены, что хотите удалить книгу?');">
+    <button>Удалить</button>
+</a>
+</body>
+</html>

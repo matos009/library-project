@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Человек</title>
+</head>
+<body>
+<p th:text="${person.getFio()}">VALUE</p>
+<p th:text="${person.getBirthYear()}">VALUE</p>
+
+<h2>Книги, которыми владеет</h2>
+<ul>
+    <li th:each="book : ${books}">
+        <span th:text="${book.name} + ', ' + ${book.author} + ', ' + ${book.year}"></span>
+    </li>
+</ul>
+
+<a th:href="@{/people/{id}/edit(id=${person.getId()})}" class="btn">Редактировать</a>
+</body>
+</html>
